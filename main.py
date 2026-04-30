@@ -76,3 +76,32 @@ async def rackscribe(data: dict):
         "status": "ok",
         "savedTo": str(file_path)
     }
+
+
+# ===== RACKSCRIBE CLOUD QUEUE FINAL =====
+CLOUD_QUEUE = []
+
+@app.post("/rackscribe")
+async def rackscribe_cloud_queue(data: dict):
+    CLOUD_QUEUE.append(data)
+    return {
+        "status": "ok",
+        "mode": "cloud_queue",
+        "queue_size": len(CLOUD_QUEUE)
+    }
+
+@app.get("/queue")
+async def rackscribe_get_queue():
+    return {
+        "status": "ok",
+        "items": CLOUD_QUEUE,
+        "queue_size": len(CLOUD_QUEUE)
+    }
+
+@app.post("/queue/clear")
+async def rackscribe_clear_queue():
+    CLOUD_QUEUE.clear()
+    return {
+        "status": "ok",
+        "mode": "queue_cleared"
+    }
