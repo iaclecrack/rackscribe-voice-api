@@ -1,0 +1,9 @@
+__pycache__/
+uploads/
+local_transcriptions_backup/
+*.srt
+*.tsv
+*.vtt
+*.txt
+[0-9a-f]*.json
+.DS_Store
